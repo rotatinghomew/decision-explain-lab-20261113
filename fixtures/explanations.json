@@ -9,7 +9,26 @@
         "entry_device": 0.5,
         "travel_task": 0.4,
         "weak_travel": 0.9
-      }
+      },
+      "trees": [
+        {
+          "feature": "call_density",
+          "threshold": 0.25,
+          "left": {
+            "value": -0.2
+          },
+          "right": {
+            "feature": "entry_device",
+            "threshold": 0.5,
+            "left": {
+              "value": 0.1
+            },
+            "right": {
+              "value": 0.8
+            }
+          }
+        }
+      ]
     },
     "v2": {
       "intercept": -1.8,
@@ -20,7 +39,26 @@
         "entry_device": 0.8,
         "travel_task": 0.2,
         "weak_travel": 1.2
-      }
+      },
+      "trees": [
+        {
+          "feature": "call_density",
+          "threshold": 0.25,
+          "left": {
+            "value": -0.2
+          },
+          "right": {
+            "feature": "entry_device",
+            "threshold": 0.5,
+            "left": {
+              "value": 0.1
+            },
+            "right": {
+              "value": 1.3
+            }
+          }
+        }
+      ]
     }
   },
   "reference": [
@@ -1728,8 +1766,2250 @@
         "calls": 0
       },
       "cost": 5
+    },
+    {
+      "id": "prepare_wifi",
+      "changes": {},
+      "cost": 1,
+      "prerequisites": [],
+      "preconditions": {
+        "network": "weak"
+      }
+    },
+    {
+      "id": "switch_wifi",
+      "changes": {
+        "network": "normal"
+      },
+      "cost": 2,
+      "prerequisites": [
+        "prepare_wifi"
+      ],
+      "exclusive_with": [
+        "manual"
+      ]
+    },
+    {
+      "id": "batch_calls",
+      "changes": {
+        "calls": 1,
+        "duration_s": 20
+      },
+      "cost": 1,
+      "prerequisites": [
+        "switch_wifi"
+      ],
+      "exclusive_with": [
+        "simplify"
+      ]
     }
   ],
   "target_probability": 0.25,
-  "maximum_cost": 6
+  "maximum_cost": 6,
+  "reference_versions": {
+    "v1": [
+      {
+        "case_id": "h0",
+        "calls": 1,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h1",
+        "calls": 2,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h2",
+        "calls": 3,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h3",
+        "calls": 4,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h4",
+        "calls": 5,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h5",
+        "calls": 1,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h6",
+        "calls": 2,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h7",
+        "calls": 3,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h8",
+        "calls": 4,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h9",
+        "calls": 5,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h10",
+        "calls": 1,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h11",
+        "calls": 2,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h12",
+        "calls": 3,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h13",
+        "calls": 4,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h14",
+        "calls": 5,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h15",
+        "calls": 1,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h16",
+        "calls": 2,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h17",
+        "calls": 3,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h18",
+        "calls": 4,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h19",
+        "calls": 5,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h20",
+        "calls": 1,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h21",
+        "calls": 2,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h22",
+        "calls": 3,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h23",
+        "calls": 4,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h24",
+        "calls": 5,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h25",
+        "calls": 1,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h26",
+        "calls": 2,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h27",
+        "calls": 3,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h28",
+        "calls": 4,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h29",
+        "calls": 5,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h30",
+        "calls": 1,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h31",
+        "calls": 2,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h32",
+        "calls": 3,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h33",
+        "calls": 4,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h34",
+        "calls": 5,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h35",
+        "calls": 1,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h36",
+        "calls": 2,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h37",
+        "calls": 3,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h38",
+        "calls": 4,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h39",
+        "calls": 5,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h40",
+        "calls": 1,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h41",
+        "calls": 2,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h42",
+        "calls": 3,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h43",
+        "calls": 4,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h44",
+        "calls": 5,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h45",
+        "calls": 1,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h46",
+        "calls": 2,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h47",
+        "calls": 3,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h48",
+        "calls": 4,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h49",
+        "calls": 5,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h50",
+        "calls": 1,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h51",
+        "calls": 2,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h52",
+        "calls": 3,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h53",
+        "calls": 4,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h54",
+        "calls": 5,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h55",
+        "calls": 1,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h56",
+        "calls": 2,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h57",
+        "calls": 3,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h58",
+        "calls": 4,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h59",
+        "calls": 5,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h60",
+        "calls": 1,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h61",
+        "calls": 2,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h62",
+        "calls": 3,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h63",
+        "calls": 4,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h64",
+        "calls": 5,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h65",
+        "calls": 1,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h66",
+        "calls": 2,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h67",
+        "calls": 3,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h68",
+        "calls": 4,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h69",
+        "calls": 5,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h70",
+        "calls": 1,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h71",
+        "calls": 2,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h72",
+        "calls": 3,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h73",
+        "calls": 4,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h74",
+        "calls": 5,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h75",
+        "calls": 1,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h76",
+        "calls": 2,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h77",
+        "calls": 3,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h78",
+        "calls": 4,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h79",
+        "calls": 5,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h80",
+        "calls": 1,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h81",
+        "calls": 2,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h82",
+        "calls": 3,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h83",
+        "calls": 4,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h84",
+        "calls": 5,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h85",
+        "calls": 1,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h86",
+        "calls": 2,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h87",
+        "calls": 3,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h88",
+        "calls": 4,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h89",
+        "calls": 5,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h90",
+        "calls": 1,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h91",
+        "calls": 2,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h92",
+        "calls": 3,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h93",
+        "calls": 4,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h94",
+        "calls": 5,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h95",
+        "calls": 1,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h96",
+        "calls": 2,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h97",
+        "calls": 3,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h98",
+        "calls": 4,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h99",
+        "calls": 5,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      }
+    ],
+    "v2": [
+      {
+        "case_id": "h50",
+        "calls": 1,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h51",
+        "calls": 2,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h52",
+        "calls": 3,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h53",
+        "calls": 4,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h54",
+        "calls": 5,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h55",
+        "calls": 1,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h56",
+        "calls": 2,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h57",
+        "calls": 3,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h58",
+        "calls": 4,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h59",
+        "calls": 5,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h60",
+        "calls": 1,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h61",
+        "calls": 2,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h62",
+        "calls": 3,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h63",
+        "calls": 4,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h64",
+        "calls": 5,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h65",
+        "calls": 1,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h66",
+        "calls": 2,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h67",
+        "calls": 3,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h68",
+        "calls": 4,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h69",
+        "calls": 5,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h70",
+        "calls": 1,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h71",
+        "calls": 2,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h72",
+        "calls": 3,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h73",
+        "calls": 4,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h74",
+        "calls": 5,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h75",
+        "calls": 1,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h76",
+        "calls": 2,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h77",
+        "calls": 3,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h78",
+        "calls": 4,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h79",
+        "calls": 5,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h80",
+        "calls": 1,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h81",
+        "calls": 2,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h82",
+        "calls": 3,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h83",
+        "calls": 4,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h84",
+        "calls": 5,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h85",
+        "calls": 1,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h86",
+        "calls": 2,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h87",
+        "calls": 3,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h88",
+        "calls": 4,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h89",
+        "calls": 5,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h90",
+        "calls": 1,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h91",
+        "calls": 2,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h92",
+        "calls": 3,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h93",
+        "calls": 4,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h94",
+        "calls": 5,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h95",
+        "calls": 1,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h96",
+        "calls": 2,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h97",
+        "calls": 3,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h98",
+        "calls": 4,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h99",
+        "calls": 5,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h100",
+        "calls": 1,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h101",
+        "calls": 2,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h102",
+        "calls": 3,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h103",
+        "calls": 4,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h104",
+        "calls": 5,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h105",
+        "calls": 1,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h106",
+        "calls": 2,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h107",
+        "calls": 3,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h108",
+        "calls": 4,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h109",
+        "calls": 5,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h110",
+        "calls": 1,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h111",
+        "calls": 2,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h112",
+        "calls": 3,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h113",
+        "calls": 4,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h114",
+        "calls": 5,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h115",
+        "calls": 1,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h116",
+        "calls": 2,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h117",
+        "calls": 3,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h118",
+        "calls": 4,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h119",
+        "calls": 5,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h120",
+        "calls": 1,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h121",
+        "calls": 2,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h122",
+        "calls": 3,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h123",
+        "calls": 4,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h124",
+        "calls": 5,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h125",
+        "calls": 1,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h126",
+        "calls": 2,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h127",
+        "calls": 3,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h128",
+        "calls": 4,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h129",
+        "calls": 5,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h130",
+        "calls": 1,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h131",
+        "calls": 2,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h132",
+        "calls": 3,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h133",
+        "calls": 4,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h134",
+        "calls": 5,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h135",
+        "calls": 1,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h136",
+        "calls": 2,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h137",
+        "calls": 3,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h138",
+        "calls": 4,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h139",
+        "calls": 5,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h140",
+        "calls": 1,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h141",
+        "calls": 2,
+        "duration_s": 16,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h142",
+        "calls": 3,
+        "duration_s": 17,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h143",
+        "calls": 4,
+        "duration_s": 18,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h144",
+        "calls": 5,
+        "duration_s": 10,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h145",
+        "calls": 1,
+        "duration_s": 11,
+        "tier": "mid",
+        "network": "weak",
+        "app_available": true,
+        "selected_app": "travel",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h146",
+        "calls": 2,
+        "duration_s": 12,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h147",
+        "calls": 3,
+        "duration_s": 13,
+        "tier": "entry",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h148",
+        "calls": 4,
+        "duration_s": 14,
+        "tier": "mid",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      },
+      {
+        "case_id": "h149",
+        "calls": 5,
+        "duration_s": 15,
+        "tier": "high",
+        "network": "normal",
+        "app_available": true,
+        "selected_app": "office",
+        "age_group": "adult",
+        "known_at": 50
+      }
+    ]
+  }
 }

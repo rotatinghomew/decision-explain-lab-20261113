@@ -20,12 +20,22 @@ def transform(row):
             'weak_travel': float(row['network'] == 'weak' and row['selected_app'] == 'travel')}
 
 
+def tree_value(node, features):
+    if 'value' in node:
+        return node['value']
+    if node['feature'] not in features:
+        raise ValueError('树模型含未知特征')
+    branch = 'left' if features[node['feature']] <= node['threshold'] else 'right'
+    return tree_value(node[branch], features)
+
+
 def score(model, row):
     features = transform(row)
     unknown = set(model['coefficients']) - set(features)
     if unknown:
         raise ValueError('模型含未知特征')
     logit = model['intercept'] + sum(features[key] * value for key, value in model['coefficients'].items())
+    logit += sum(tree_value(tree, features) for tree in model.get('trees', []))
     if not math.isfinite(logit):
         raise ValueError('模型分数非有限')
     probability = 1 / (1 + math.exp(-logit)) if logit >= 0 else math.exp(logit) / (1 + math.exp(logit))

@@ -9,7 +9,7 @@ def load(name):
     return json.loads((Path(__file__).resolve().parents[1] / 'fixtures' / name).read_text(encoding='utf-8'))
 
 
-from decision_explain_lab.model import transform, score, inspect
+from decision_explain_lab.model import transform, score, inspect, tree_value
 
 
 class BusinessTests(unittest.TestCase):
@@ -38,6 +38,15 @@ class BusinessTests(unittest.TestCase):
     def test_two_versions(self):
         result = inspect(self.document)
         self.assertEqual(len(result['predictions'][0]['models']), 2)
+
+    def test_tree_threshold(self):
+        tree = {'feature': 'calls', 'threshold': 2, 'left': {'value': -.5}, 'right': {'value': .7}}
+        self.assertEqual(tree_value(tree, {'calls': 2}), -.5)
+        self.assertEqual(tree_value(tree, {'calls': 3}), .7)
+
+    def test_tree_is_part_of_score(self):
+        model = {'intercept': 0, 'coefficients': {}, 'trees': [{'value': .8}]}
+        self.assertEqual(score(model, self.row)['logit'], .8)
 
     def test_negative_calls(self):
         self.row['calls'] = -1

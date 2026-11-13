@@ -1,5 +1,7 @@
 # 记录口径
 
+冻结模型支持线性项与 `trees` 中的分段树贡献。树的内部节点按具名特征的 `threshold` 左闭比较选择 `left` 或 `right`，叶节点的 `value` 加入 logit。`operations` 的前置条件针对原始字段，`prerequisites` 和 `exclusive_with` 使用操作编号。`reference_versions` 分别保存两个版本当时使用的参考人群。
+
 加载冻结的任务转人工预测模型，执行特征变换、合法性检查和批量评分。
 
 models 的 coefficients 对应 transform 返回的具名列，intercept 在 logit 空间；概率为 sigmoid(logit)。app_available 与 selected_app 有联动，call_density 从 calls、duration_s 派生。operations 是原始字段上的可执行动作，protected 是不可改变字段。
